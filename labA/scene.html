@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab A| COMP2144</title>
+    <style>
+
+        html,
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }  
+        #renderCanvas {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+    </style>
+    
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+</head>
+<body>
+    
+    <canvas id="renderCanvas" touch-action="none"></canvas>
+    
+ 
+    <script>
+        
+        const canvas = document.querySelector("#renderCanvas");
+       
+        const engine = new BABYLON.Engine(canvas, true);
+       
+        const createScene = function() {
+           
+            //Background
+            const scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color4(0.5, 0.8, 0.92, 1); // Light blue background
+
+           //Box 
+            const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+            box.position.x = -2;
+
+            const boxMaterial = new BABYLON.StandardMaterial("boxMat", scene);
+            boxMaterial.diffuseColor = new BABYLON.Color3(0.2, 0.6, 1.0);
+            box.material = boxMaterial;
+            
+            //Sphere
+            const sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {}, scene);
+            sphere.position.y = 2;
+
+            let material = new BABYLON.StandardMaterial("material", scene);
+            material.diffuseColor = new BABYLON.Color3(1.0, 0.0, 0.0);
+            sphere.material = material;
+           
+            //Cylinder
+            const cylinder = BABYLON.MeshBuilder.CreateCylinder("cylinder", { height: 2 }, scene);
+            cylinder.position.x = 2;
+            
+            const cylinderMaterial = new BABYLON.StandardMaterial("cylinderMat", scene);
+            cylinderMaterial.diffuseColor = new BABYLON.Color3(0.0, 1.0, 0.0);
+            cylinder.material = cylinderMaterial;
+
+            //Cone
+            const cone = BABYLON.MeshBuilder.CreateCylinder("cone", { 
+                diameterTop: 0, 
+                diameterBottom: 1, 
+                height: 2
+            }, scene);
+            cone.position.z = 2; 
+
+            //Ground
+            const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
+            ground.position.y = -1;
+
+            const groundMaterial = new BABYLON.StandardMaterial("groundMat", scene);
+            groundMaterial.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
+            ground.material = groundMaterial;
+
+            //Light
+            const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(1, 1, 0));
+            light.intensity = 0.9;
+            // STEP 8b: Return the scene
+            return scene;
+        }
+       
+
+        const scene = createScene();
+        
+        engine.runRenderLoop(function() {
+            scene.render();
+        });
+        
+        window.addEventListener("resize", function() {
+            engine.resize();
+        });
+      
+    </script>
+</body>
+</html>
