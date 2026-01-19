@@ -75,6 +75,13 @@
             }, scene);
             cone.position.z = 2; 
 
+            //Torus
+            const torus = BABYLON.MeshBuilder.CreateTorus("torus", { diameter: 2, thickness: 0.6 }, scene);
+            torus.position.z = -2;
+
+            const torusMaterial = new BABYLON.StandardMaterial("torusMat", scene);torusMaterial.diffuseColor = new BABYLON.Color3(1.0, 0.8, 0.0);
+            torus.material = torusMaterial;
+
             //Ground
             const ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
             ground.position.y = -1;
