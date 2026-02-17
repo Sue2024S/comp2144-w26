@@ -42,9 +42,10 @@ const createScene = async function() {
     box.material = boxMat;
 
     // STEP 4: Move the box so it is not at your feet
-    
+    box.position.x = 1; 
+    box.position.z = 2; 
     // STEP 4b: It is embedded in the floor - bring it up 0.25
-    
+    box.position.y = 0.25;
 
 
     /* SOUNDS
