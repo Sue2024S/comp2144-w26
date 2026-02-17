@@ -64,8 +64,8 @@ const createScene = async function() {
             // STEP 2b: We need 0, 0, 0 to be a space on the floor, not between your eyes! There are several types of reference spaces: viewer, local, local-floor, bounded-floor, and unbounded (https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace)
             referenceSpaceType: "local-floor"
         },
-        // STEP 2c: Meta Quest requires these to be explicitly requested
-        
+        // STEP 2c: Meta Quest requires these to be explicitly requested. Hit test is when should be scanning all the time
+        optionalFeatures: ["hit-test", "anchors"]
     });
     // STEP 3: Commit your code and push it to a server, then try it out with a headset - notice how the orange box is right at your feet - 0, 0, 0 is located on the floor at your feet
 
