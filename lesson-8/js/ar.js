@@ -40,6 +40,8 @@ const createScene = async function() {
     const boxMat = new BABYLON.StandardMaterial("boxMat");
     boxMat.diffuseColor = new BABYLON.Color3(1, 0.6, 0);
     box.material = boxMat;
+    box.position.y = 0.5; // since the box is 0.5 units in size, we need to raise it up by half of that to bring it above the floor
+    box.position.z = 2; // move the box forward so it's not right at your feet
     // The initial position of the box is 0, 0, 0 so with the referenceSpaceType: "unbounded" it will be located on the viewer's head, which is the origin point of the scene - reposition the box as you'd like
     // box.position.y = 0.5;
     // box.position.z = 0.5;
