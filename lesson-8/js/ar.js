@@ -47,7 +47,11 @@ const createScene = async function() {
     // box.position.z = 0.5;
 
     // STEP 7: Let's create another native mesh object for interactive purposes
+    const can = BABYLON.MeshBuilder.CreateCylinder("can", {height: 0.3, diameter: 0.1, tesselation:10}, scene);
+    can.material= boxMat // we can just reuse the box material for the can, since it's a simple grey colour
+    can.position.x = 0.5;
     
+  
 
     /* SOUNDS
     ---------------------------------------------------------------------------------------------------- */
@@ -133,7 +137,8 @@ const createScene = async function() {
     }
 
     // STEP 8: Make the can grabbable and moveable (awesome)! 
-    
+    can.bakeCurrentTransformIntoVertices().addBehavior(new BABYLON.SixDofDragBehavior); // "freeze" the current position of the can as its new zero point, so that it doesn't jump around when we start dragging it
+    // add the six degrees of freedom drag behaviour to the can, which allows us to grab and move the can around in 3D space with our controller or hand tracking
 
 
     // Return the scene
