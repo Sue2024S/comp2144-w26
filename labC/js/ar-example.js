@@ -1,5 +1,5 @@
 
-
+alert("JS loaded");
 // Get the canvas element as a const
 const canvas = document.getElementById("renderCanvas");
 // Create the BABYON 3D engine, and attach it to the canvas
